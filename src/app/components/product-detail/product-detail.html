@@ -1,0 +1,58 @@
+<div *ngIf="isLoading" class="loading">
+  <p>Cargando producto...</p>
+</div>
+
+<div class="product-detail" *ngIf="product && !isLoading">
+  <div class="container">
+    <button routerLink="/products" class="back-btn">← Volver a productos</button>
+    
+    <div class="detail-content">
+     <div class="product-image">
+  <img 
+    *ngIf="product.imagen && product.imagen !== ''" 
+    [src]="product.imagen" 
+    [alt]="product.nombre"
+    (error)="product.imagen = ''"
+  >
+  <div *ngIf="!product.imagen || product.imagen === ''" class="image-placeholder">
+    {{ product.nombre.charAt(0) }}
+  </div>
+</div>
+      
+      <div class="product-info">
+        <h1>{{ product.nombre }}</h1>
+        <p class="price">${{ product.precio.toFixed(2) }}</p>
+        <p class="category">Categoría: {{ product.categoria }}</p>
+        <p class="description">{{ product.descripcion }}</p>
+        
+        <div class="stock-status" 
+             [class.in-stock]="product.stock > 0" 
+             [class.low-stock]="product.stock > 0 && product.stock <= 5">
+          {{ product.stock > 0 ? (product.stock <= 5 ? 'Últimas unidades' : 'En stock') : 'Agotado' }}
+          <span *ngIf="product.stock > 0">({{ product.stock }} disponibles)</span>
+        </div>
+        
+        <div class="product-actions">
+          <button 
+            (click)="addToCart()" 
+            [disabled]="product.stock === 0"
+            class="btn-primary">
+            Agregar al Carrito
+          </button>
+          <button 
+            (click)="goBack()"
+            class="btn-secondary">
+            Seguir comprando
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!product && !isLoading" class="not-found">
+  <div class="container">
+    <h2>Producto no encontrado</h2>
+    <button routerLink="/products" class="btn-primary">Volver a productos</button>
+  </div>
+</div>

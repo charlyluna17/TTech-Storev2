@@ -1,0 +1,144 @@
+[
+  {
+    "id": "prod_1",
+    "nombre": "Laptop Ultrabook",
+    "descripcion": "Laptop de última generación con procesador de 12 núcleos.",
+    "precio": 1000.50,
+    "categoria": "Computadoras",
+    "imagen": "assets/images/productos/pc1.jpg",
+    "stock": 15
+  },
+   {
+    "id" : "prod_2",
+    "nombre": "Computadora de Oficina",
+    "descripcion": "Computadora para oficina de Alta Gama.",
+    "precio": 600.00,
+    "categoria":"Computadoras",
+    "imagen":"assets/images/productos/pc2.jpg",
+    "stock": 5
+  },
+  {
+    "id" :"prod_3",
+    "nombre" : "Computadora Gamer",
+    "descripcion": "Computadora para jugar VideoJuegos - Gama Alta  ",
+    "precio" : 1400.00,
+    "categoria" : "Computadoras",
+    "imagen":"assets/images/productos/pc3.jpg",
+    "stock": 3
+
+  },
+
+  {
+    "id": "prod_4",
+    "nombre": "Teclado Redragon",
+    "descripcion": "Teclado mecánico RGB con switches Redragon, ideal para gamers.",
+    "precio": 50.00,
+    "categoria": "Perifericos",
+    "imagen": "assets/images/productos/TecladoRedragon.jpg",
+    "stock": 8
+  },
+  {
+    "id" : "prod_5",
+    "nombre": "Auriculares JBL",
+    "descripcion": "Auriculares con microfono integrado para gaming",
+    "precio" : 45.00,
+    "categoria":"Perifericos",
+    "imagen":"assets/images/productos/audifonos.jpg",
+    "stock" : 10
+
+  },
+  {
+    "id": "prod_6",
+    "nombre": "Mouse Logitech g502",
+    "descripcion":"Mouse Alambrico ideal para videojuegos",
+    "precio": 39.00,
+    "categoria": "Perifericos",
+    "imagen":"assets/images/productos/mouse.jpg",
+    "stock": 15
+
+  },
+  {
+    "id": "prod_7",
+    "nombre": "Xiaomi 14 Ultra",
+    "descripcion":"El Xiaomi 14 Ultra 5G cuenta con un potente procesador Qualcomm Snapdragon 8 gen 3...",
+    "precio": 1000.00,
+    "categoria":"Telefonos",
+    "imagen":"assets/images/productos/xiaomi14.jpg",
+    "stock":10
+
+  },
+ 
+  {
+    "id": "prod_8",
+    "nombre": "Samsung S24 Ultra",
+    "descripcion": "Teléfono inteligente con cámara de alta resolución y batería de larga duración.",
+    "precio": 1200.00,
+    "categoria": "Telefonos",
+    "imagen": "assets/images/productos/S24-ultra.jpg",
+    "stock": 20
+  },
+  {
+    "id":"prod_9",
+    "nombre": "iPhone 16",
+    "descripcion": "Teléfono inteligente de Apple con chip A18 Bionic y mejoras en la cámara.",
+    "precio":1100.00,
+    "categoria":"Telefonos",
+    "imagen":"assets/images/productos/iphone16.jpg",
+    "stock":15
+  },
+  {
+    "id":"prod_10",
+    "nombre":"Bocina JBL Flip 6",
+    "descripcion": "Potente sonido JBL Original Pro Sound con claridad excepcional.",
+    "precio":90.00,
+    "categoria":"Audio",
+    "imagen":"assets/images/productos/jbl.jpg",
+    "stock":10
+  },
+  {
+    "id":"prod_11",
+    "nombre": "Pantalla Smart TV - Samsung",
+    "descripcion": "Pantalla de 32” Smart con PurColor.",
+    "precio":230.00,
+    "categoria":"Audio",
+    "imagen":"assets/images/productos/smart.jpg",
+    "stock": 6
+  },
+  {
+    "id": "prod_12",
+    "nombre": "Camara de videovigilancia NEXXT",
+    "descripcion":"Cámara Full HD con vista panorámica para interiores.",
+    "precio":45.00,
+    "categoria":"Audio",
+    "imagen":"assets/images/productos/camara.jpg",
+    "stock":9
+  },
+  {
+    "id":"prod_13",
+    "nombre":"Play Station 5 Slim",
+    "descripcion":"Edición Digital con juego ASTRO BOT incluido.",
+    "precio":650.00,
+    "categoria": "Consolas",
+    "imagen":"assets/images/productos/ps5-1.jpg",
+    "stock":20
+  },
+  {
+    "id":"prod_14",
+    "nombre":"Nintendo Switch OLED",
+    "descripcion":"Pantalla OLED de 7 pulgadas, 64GB de almacenamiento.",
+    "precio":420.00,
+    "categoria":"Consolas",
+    "imagen":"assets/images/productos/switch1.jpg",
+    "stock":10
+  },
+  {
+    "id":"prod_15",
+    "nombre":"Control inalambrico Xbox Series",
+    "descripcion":"Control inalambrico xbox series x/s windows ios android robot white",
+    "precio":65.00,
+    "categoria":"Consolas",
+    "imagen":"assets/images/productos/control.jpg",
+    "stock":15
+    
+  }
+]
