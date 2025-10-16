@@ -45,12 +45,13 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  addToCart(): void {
-    if (this.product) {
-      this.cartService.addToCart(this.product);
-      alert(`${this.product.nombre} agregado al carrito!`);
-    }
+addToCart(): void {
+  if (this.product) {
+    this.cartService.addToCart(this.product);
+    // El header se actualizará automáticamente
+    alert(`${this.product.nombre} agregado al carrito!`);
   }
+}
 
   goBack(): void {
     this.router.navigate(['/products']);

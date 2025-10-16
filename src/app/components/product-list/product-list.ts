@@ -77,10 +77,11 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  addToCart(product: Product): void {
-    this.cartService.addToCart(product);
-    alert(`${product.nombre} agregado al carrito!`);
-  }
+addToCart(product: Product): void {
+  this.cartService.addToCart(product);
+  // El header se actualizará automáticamente gracias al observable
+  alert(`${product.nombre} agregado al carrito!`);
+}
 
   viewDetails(productId: string): void {
     this.router.navigate(['/product', productId]);
