@@ -124,10 +124,21 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  addToCart(product: Product): void {
-    this.cartService.addToCart(product);
-    alert(`${product.nombre} agregado al carrito!`);
+
+addToCart(product: Product): void {
+  this.cartService.addToCart(product);
+  
+  // Pequeña animación de confirmación
+  const button = event?.target as HTMLElement;
+  if (button) {
+    button.classList.add('added');
+    setTimeout(() => {
+      button.classList.remove('added');
+    }, 500);
   }
+  
+  alert(`${product.nombre} agregado al carrito!`);
+}
 
   viewDetails(productId: string): void {
     this.router.navigate(['/product', productId]);

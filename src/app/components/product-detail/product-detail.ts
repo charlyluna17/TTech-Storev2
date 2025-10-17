@@ -50,6 +50,7 @@ export class ProductDetailComponent implements OnInit {
       this.cartService.addToCart(this.product);
       alert(`${this.product.nombre} agregado al carrito!`);
     }
+    
   }
 
   goBack(): void {

@@ -1,0 +1,149 @@
+<div class="cart-container">
+  <div class="cart-header">
+    <h1 class="cart-title">Mi Carrito de Compras</h1>
+    <button class="continue-shopping-btn" (click)="continueShopping()">
+      ← Seguir Comprando
+    </button>
+  </div>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <div class="empty-cart-icon">🛒</div>
+    <h2>Tu carrito está vacío</h2>
+    <p>Agrega algunos productos increíbles para comenzar</p>
+    <button class="continue-shopping-btn" (click)="continueShopping()">
+      Explorar Productos
+    </button>
+  </div>
+
+  <div *ngIf="cartItems.length > 0" class="cart-content">
+    <div class="cart-items">
+      <div *ngFor="let item of cartItems" class="cart-item">
+        <div class="item-image">
+          <img 
+            *ngIf="item.product.imagen && item.product.imagen !== ''" 
+            [src]="item.product.imagen" 
+            [alt]="item.product.nombre"
+            (error)="item.product.imagen = ''"
+          >
+          <span *ngIf="!item.product.imagen || item.product.imagen === ''">
+            {{ item.product.nombre.charAt(0) }}
+          </span>
+        </div>
+        
+        <div class="item-details">
+          <h3>{{ item.product.nombre }}</h3>
+          <p class="item-price">${{ item.product.precio.toFixed(2) }}</p>
+          <p class="item-category">{{ item.product.categoria }}</p>
+          <span class="stock-status" [class.stock-high]="getStockStatus(item.product.stock) === 'high'"
+                [class.stock-low]="getStockStatus(item.product.stock) === 'low'"
+                [class.stock-out]="getStockStatus(item.product.stock) === 'out'">
+            {{ item.product.stock > 10 ? 'En stock' : (item.product.stock > 0 ? 'Últimas unidades' : 'Agotado') }}
+          </span>
+        </div>
+        
+        <div class="quantity-controls">
+          <button 
+            class="quantity-btn" 
+            (click)="updateQuantity(item.product.id, item.quantity - 1)"
+            [disabled]="item.quantity <= 1">
+            -
+          </button>
+          <input 
+            type="number" 
+            class="quantity-input" 
+            [value]="item.quantity" 
+            min="1" 
+            [max]="item.product.stock"
+            (change)="updateQuantity(item.product.id, $any($event.target).valueAsNumber)">
+          <button 
+            class="quantity-btn" 
+            (click)="updateQuantity(item.product.id, item.quantity + 1)"
+            [disabled]="item.quantity >= item.product.stock">
+            +
+          </button>
+        </div>
+        
+        <button class="remove-btn" (click)="removeItem(item.product.id)">
+          Eliminar
+        </button>
+      </div>
+    </div>
+
+    <div class="cart-summary">
+      <h3 class="summary-title">Resumen del Pedido</h3>
+      
+      <div class="summary-row">
+        <span>Subtotal:</span>
+        <span>${{ getSubtotal().toFixed(2) }}</span>
+      </div>
+      
+      <div class="summary-row">
+        <span>IVA (13%):</span>
+        <span>${{ getTax().toFixed(2) }}</span>
+      </div>
+      
+      <div class="summary-row summary-total">
+        <span>Total:</span>
+        <span>${{ getTotal().toFixed(2) }}</span>
+      </div>
+      
+      <button 
+        class="checkout-btn" 
+        (click)="proceedToCheckout()"
+        *ngIf="!showCustomerForm">
+        Proceder al Pago
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="showCustomerForm" class="customer-form">
+    <h3>Información del Cliente</h3>
+    
+    <div class="form-group">
+      <label for="name">Nombre Completo *</label>
+      <input 
+        type="text" 
+        id="name" 
+        [(ngModel)]="customerInfo.name" 
+        placeholder="Ingresa tu nombre completo"
+        required>
+    </div>
+    
+    <div class="form-group">
+      <label for="email">Email *</label>
+      <input 
+        type="email" 
+        id="email" 
+        [(ngModel)]="customerInfo.email" 
+        placeholder="Ingresa tu email"
+        required>
+    </div>
+    
+    <div class="form-group">
+      <label for="address">Dirección *</label>
+      <input 
+        type="text" 
+        id="address" 
+        [(ngModel)]="customerInfo.address" 
+        placeholder="Ingresa tu dirección completa"
+        required>
+    </div>
+    
+    <div class="form-group">
+      <label for="phone">Teléfono *</label>
+      <input 
+        type="tel" 
+        id="phone" 
+        [(ngModel)]="customerInfo.phone" 
+        placeholder="Ingresa tu teléfono"
+        required>
+    </div>
+    
+    <button 
+      class="generate-invoice-btn" 
+      (click)="generateInvoice()"
+      [disabled]="!isCustomerInfoValid()">
+      Generar Factura Electrónica
+    </button>
+  </div>
+</div>

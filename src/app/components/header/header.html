@@ -1,17 +1,15 @@
 <header class="header">
   <div class="container">
-    <!-- Logo con imagen -->
+    <!-- Logo -->
     <div class="logo-section">
       <button class="logo-btn" (click)="goToHome()">
         <div class="logo-container">
-          <!-- Imagen del logo -->
           <img 
             src="assets/images/logo.png" 
             alt="TTech Store Logo" 
             class="logo-image"
             (error)="handleImageError($event)"
           >
-          <!-- Texto del logo -->
           <div class="logo-text">
             <h1>TTech Store</h1>
             <p>Tu tienda de electrónica de confianza</p>
@@ -20,7 +18,7 @@
       </button>
     </div>
 
-    <!-- Barra de búsqueda INTEGRADA -->
+    <!-- Barra de búsqueda -->
     <div class="search-section">
       <div class="search-container">
         <input 
@@ -40,16 +38,15 @@
       </div>
     </div>
 
-    <!-- Navegación y acciones -->
+    <!-- Navegación -->
     <nav class="nav-section">
-      <!-- Botón Perfil -->
       <button class="nav-btn" (click)="goToProfile()">
         <span class="nav-icon">👤</span>
         <span class="nav-text">Perfil</span>
       </button>
 
-      <!-- Botón Carrito -->
-      <button class="nav-btn cart-btn" routerLink="/cart">
+      <!-- Botón Carrito con animación -->
+      <button class="nav-btn cart-btn" routerLink="/cart" [class.added]="cartItems > 0">
         <span class="nav-icon">🛒</span>
         <span class="nav-text">Carrito</span>
         <span class="cart-badge" *ngIf="cartItems > 0">{{ cartItems }}</span>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CartService } from '../../services/cart';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,11 +12,13 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './header.html',
   styleUrls: ['./header.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   cartItems = 0;
   totalPrice = 0;
   logoError = false;
   searchTerm = '';
+  
+  private cartSubscription: Subscription = new Subscription();
 
   constructor(
     private cartService: CartService,
@@ -23,7 +26,28 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Suscribirse a los cambios del carrito
+    this.cartSubscription.add(
+      this.cartService.totalItems$.subscribe(totalItems => {
+        this.cartItems = totalItems;
+        console.log('Header - Cart items updated:', totalItems);
+      })
+    );
+
+    this.cartSubscription.add(
+      this.cartService.totalPrice$.subscribe(totalPrice => {
+        this.totalPrice = totalPrice;
+        console.log('Header - Total price updated:', totalPrice);
+      })
+    );
+
+    // Cargar valores iniciales
     this.updateCartInfo();
+  }
+
+  ngOnDestroy(): void {
+    // Limpiar suscripciones
+    this.cartSubscription.unsubscribe();
   }
 
   updateCartInfo(): void {
@@ -33,12 +57,11 @@ export class HeaderComponent implements OnInit {
 
   goToHome(): void {
     this.router.navigate(['/']);
-    this.searchTerm = ''; // Limpiar búsqueda al ir al home
+    this.searchTerm = '';
   }
 
   onSearch(): void {
     if (this.searchTerm.trim()) {
-      // Navegar a productos con el término de búsqueda
       this.router.navigate(['/products'], { 
         queryParams: { search: this.searchTerm } 
       });
@@ -46,11 +69,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onSearchInput(): void {
-    // Búsqueda en tiempo real solo si estamos en la página de productos
     if (this.router.url === '/products' && this.searchTerm.trim()) {
       this.router.navigate(['/products'], { 
         queryParams: { search: this.searchTerm },
-        replaceUrl: true // No agregar al historial
+        replaceUrl: true
       });
     }
   }
@@ -59,7 +81,7 @@ export class HeaderComponent implements OnInit {
     this.searchTerm = '';
     if (this.router.url === '/products') {
       this.router.navigate(['/products'], { 
-        queryParams: {} // Limpiar parámetros
+        queryParams: {}
       });
     }
   }
