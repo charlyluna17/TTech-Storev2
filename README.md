@@ -1,5 +1,7 @@
 TTech Store - E-commerce de Electrónicos
 
+✅ 
+
 📋 Descripción
 TTech Store es una aplicación web moderna de comercio electrónico especializada en productos electrónicos. Desarrollada con las últimas tecnologías de Angular, ofrece una experiencia de usuario fluida y completamente responsive.
 
@@ -10,17 +12,18 @@ TTech Store es una aplicación web moderna de comercio electrónico especializad
 - Carlos Isaac Reyes Hernandez
 - William Aaron Peralta Cruz
 
-🛠️Organizacion 
+📁Organizacion 
 Trello: https://trello.com/b/k5H8QP4q/proyecto-pagina-web-ttech-store-v2
 
 Características
 🎯 Funcionalidades Principales
--🏠 Página de Inicio	
--🔍 Búsqueda Inteligente	
--🛒 Carrito de Compras	
--🧾 Facturación Electrónica	
--📱 Diseño Responsive	
--📦 Gestión de Stock	
+      
+    -🏠 Página de Inicio	
+    -🔍 Búsqueda Inteligente	
+    -🛒 Carrito de Compras	
+    -🧾 Facturación Electrónica	
+    -📱 Diseño Responsive	
+    -📦 Gestión de Stock	
 
 💫 Experiencia de Usuario
 
@@ -58,3 +61,8 @@ Herramientas
     -Git & GitHub - Control de versiones colaborativo
 
     -VS Code - Entorno de desarrollo
+
+📄 Licencia
+
+Distribuido bajo la Licencia Creative Commons Attribution-ShareAlike 4.0 International.
+Ver LICENSE para más información.
