@@ -26,7 +26,7 @@
 .logo-btn {
   background: none;
   border: none;
-  color: rgb(255, 255, 255);
+  color: white;
   cursor: pointer;
   text-align: left;
   padding: 0;
@@ -44,10 +44,11 @@
 }
 
 .logo-image {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   border-radius: 8px;
+  background: white;
   padding: 4px;
 }
 
@@ -77,19 +78,25 @@
   border-radius: 25px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
 }
 
 .search-input {
   flex: 1;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 3rem 0.75rem 1.5rem;
   font-size: 1rem;
   outline: none;
   color: #2c3e50;
+  background: transparent;
 }
 
 .search-input::placeholder {
   color: #95a5a6;
+}
+
+.search-input:focus {
+  background: white;
 }
 
 .search-btn {
@@ -98,6 +105,7 @@
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  z-index: 2;
 }
 
 .search-btn:hover {
@@ -106,6 +114,25 @@
 
 .search-icon {
   font-size: 1rem;
+  color: white;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #7f8c8d;
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 0.9rem;
+  z-index: 2;
+}
+
+.clear-btn:hover {
+  color: #e74c3c;
 }
 
 /* Navigation Section */
@@ -215,6 +242,18 @@
   .nav-btn {
     padding: 0.5rem;
   }
+
+  .search-input {
+    padding: 0.65rem 2.5rem 0.65rem 1rem;
+  }
+  
+  .search-btn {
+    padding: 0.65rem 1rem;
+  }
+  
+  .clear-btn {
+    right: 50px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -233,13 +272,5 @@
 
   .logo-text h1 {
     font-size: 1.3rem;
-  }
-
-  .search-input {
-    padding: 0.5rem 1rem;
-  }
-
-  .search-btn {
-    padding: 0.5rem 1rem;
   }
 }
