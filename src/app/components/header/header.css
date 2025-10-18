@@ -26,7 +26,7 @@
 .logo-btn {
   background: none;
   border: none;
-  color: rgb(255, 255, 255);
+  color: white;
   cursor: pointer;
   text-align: left;
   padding: 0;
@@ -44,8 +44,8 @@
 }
 
 .logo-image {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
   border-radius: 8px;
   padding: 4px;
@@ -77,19 +77,25 @@
   border-radius: 25px;
   overflow: hidden;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: relative;
 }
 
 .search-input {
   flex: 1;
   border: none;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 3rem 0.75rem 1.5rem;
   font-size: 1rem;
   outline: none;
   color: #2c3e50;
+  background: transparent;
 }
 
 .search-input::placeholder {
   color: #95a5a6;
+}
+
+.search-input:focus {
+  background: white;
 }
 
 .search-btn {
@@ -98,6 +104,7 @@
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  z-index: 2;
 }
 
 .search-btn:hover {
@@ -106,6 +113,25 @@
 
 .search-icon {
   font-size: 1rem;
+  color: white;
+}
+
+.clear-btn {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #7f8c8d;
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 0.9rem;
+  z-index: 2;
+}
+
+.clear-btn:hover {
+  color: #e74c3c;
 }
 
 /* Navigation Section */
@@ -215,6 +241,18 @@
   .nav-btn {
     padding: 0.5rem;
   }
+
+  .search-input {
+    padding: 0.65rem 2.5rem 0.65rem 1rem;
+  }
+  
+  .search-btn {
+    padding: 0.65rem 1rem;
+  }
+  
+  .clear-btn {
+    right: 50px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -234,12 +272,70 @@
   .logo-text h1 {
     font-size: 1.3rem;
   }
+}
 
-  .search-input {
-    padding: 0.5rem 1rem;
+/* Animación para el icono del carrito */
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #f39c12;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
+  50% {
+    transform: scale(1.2);
+    background: #e67e22;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
-  .search-btn {
-    padding: 0.5rem 1rem;
+/* Animación cuando se agrega un producto */
+.cart-btn.added {
+  animation: bounce 0.5s ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  80% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Efecto hover mejorado */
+.cart-btn:hover .nav-icon {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-10deg);
+  }
+  75% {
+    transform: rotate(10deg);
   }
 }

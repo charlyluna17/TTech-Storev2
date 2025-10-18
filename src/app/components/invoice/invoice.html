@@ -1,0 +1,125 @@
+<div class="invoice-container" *ngIf="invoice">
+  <div class="invoice">
+    <!-- Encabezado -->
+    <div class="invoice-header">
+      <h1 class="invoice-title">Factura Electrónica</h1>
+      <p class="invoice-id">N°: {{ invoice.id }}</p>
+      <p>Fecha: {{ formatDate(invoice.date) }}</p>
+    </div>
+
+    <!-- Información de la empresa y cliente -->
+    <div class="invoice-info">
+      <div class="company-info">
+        <h3 class="info-title">TTech Store</h3>
+        <div class="info-row">
+          <span class="info-label">Dirección:</span>
+          <span class="info-value">San Salvador, El Salvador</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Teléfono:</span>
+          <span class="info-value">(503) 1234-5678</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email:</span>
+          <span class="info-value">info@ttechstore.com</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">NRC:</span>
+          <span class="info-value">123456-7</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">NIT:</span>
+          <span class="info-value">0614-271097-111-1</span>
+        </div>
+      </div>
+
+      <div class="customer-info" *ngIf="invoice.customerInfo">
+        <h3 class="info-title">Datos del Cliente</h3>
+        <div class="info-row">
+          <span class="info-label">Nombre:</span>
+          <span class="info-value">{{ invoice.customerInfo.name }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Email:</span>
+          <span class="info-value">{{ invoice.customerInfo.email }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Dirección:</span>
+          <span class="info-value">{{ invoice.customerInfo.address }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Teléfono:</span>
+          <span class="info-value">{{ invoice.customerInfo.phone }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detalles de los productos -->
+    <div class="invoice-details">
+      <table class="details-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio Unitario</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of invoice.items">
+            <td class="item-name">{{ item.product.nombre }}</td>
+            <td>${{ item.product.precio.toFixed(2) }}</td>
+            <td class="item-quantity">{{ item.quantity }}</td>
+            <td class="item-total">${{ (item.product.precio * item.quantity).toFixed(2) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Totales -->
+    <div class="invoice-totals">
+      <div class="total-row">
+        <span>Subtotal:</span>
+        <span>${{ invoice.subtotal.toFixed(2) }}</span>
+      </div>
+      <div class="total-row">
+        <span>IVA (13%):</span>
+        <span>${{ invoice.tax.toFixed(2) }}</span>
+      </div>
+      <div class="total-row total-final">
+        <span>Total:</span>
+        <span>${{ invoice.total.toFixed(2) }}</span>
+      </div>
+    </div>
+
+    <!-- Pie de página -->
+    <div class="invoice-footer">
+      <p class="thank-you">¡Gracias por su compra!</p>
+      <p>Esta factura electrónica ha sido generada automáticamente y es válida para todos los efectos legales.</p>
+      <p>Para consultas o soporte, contacte a: soporte@ttechstore.com</p>
+    </div>
+
+    <!-- Acciones -->
+    <div class="invoice-actions">
+      <button class="print-btn" (click)="printInvoice()">
+        🖨️ Imprimir Factura
+      </button>
+      <button class="new-order-btn" (click)="newOrder()">
+        🛍️ Nueva Orden
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!invoice" class="invoice-container">
+  <div class="invoice">
+    <div class="invoice-header">
+      <h1>Factura no disponible</h1>
+      <p>No se encontró información de la factura solicitada.</p>
+      <p>Serás redirigido al carrito en unos segundos...</p>
+      <button class="new-order-btn" (click)="newOrder()">
+        Volver a la Tienda
+      </button>
+    </div>
+  </div>
+</div>
