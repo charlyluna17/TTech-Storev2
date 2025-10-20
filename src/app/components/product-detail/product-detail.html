@@ -7,17 +7,17 @@
     <button routerLink="/products" class="back-btn">← Volver a productos</button>
     
     <div class="detail-content">
-     <div class="product-image">
-  <img 
-    *ngIf="product.imagen && product.imagen !== ''" 
-    [src]="product.imagen" 
-    [alt]="product.nombre"
-    (error)="product.imagen = ''"
-  >
-  <div *ngIf="!product.imagen || product.imagen === ''" class="image-placeholder">
-    {{ product.nombre.charAt(0) }}
-  </div>
-</div>
+      <div class="product-image">
+        <img 
+          *ngIf="product.imagen && product.imagen !== ''" 
+          [src]="product.imagen" 
+          [alt]="product.nombre"
+          (error)="product.imagen = ''"
+        >
+        <div *ngIf="!product.imagen || product.imagen === ''" class="image-placeholder">
+          {{ product.nombre.charAt(0) }}
+        </div>
+      </div>
       
       <div class="product-info">
         <h1>{{ product.nombre }}</h1>
@@ -44,6 +44,37 @@
             class="btn-secondary">
             Seguir comprando
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECCIÓN PRODUCTOS RELACIONADOS -->
+    <div class="related-products" *ngIf="relatedProducts.length > 0">
+      <h2>Productos Relacionados</h2>
+      <div class="related-grid">
+        <div *ngFor="let relatedProduct of relatedProducts" class="related-product-card">
+          <div class="related-product-image">
+            <img 
+              *ngIf="relatedProduct.imagen && relatedProduct.imagen !== ''" 
+              [src]="relatedProduct.imagen" 
+              [alt]="relatedProduct.nombre"
+              (error)="relatedProduct.imagen = ''"
+            >
+            <div *ngIf="!relatedProduct.imagen || relatedProduct.imagen === ''" class="image-placeholder">
+              {{ relatedProduct.nombre.charAt(0) }}
+            </div>
+          </div>
+          <div class="related-product-info">
+            <h3>{{ relatedProduct.nombre }}</h3>
+            <p class="related-product-price">${{ relatedProduct.precio.toFixed(2) }}</p>
+            <div class="related-product-actions">
+              <button 
+                (click)="viewRelatedProduct(relatedProduct.id)"
+                class="related-btn">
+                Ver Detalles
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
