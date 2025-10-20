@@ -8,7 +8,7 @@ TTech Store es una aplicación web moderna de comercio electrónico especializad
 👥 Integrantes del Equipo
 - Eugenio Antonio Diaz Diaz
 - Carlos Roberto Luna Diaz
-- Mariana Mayteen López Gómez
+- Mariana Maytee López Gómez
 - Carlos Isaac Reyes Hernandez
 - William Aaron Peralta Cruz
 
@@ -66,4 +66,5 @@ Herramientas
 
 Distribuido bajo la Licencia Creative Commons Attribution-ShareAlike 4.0 International.
 Ver LICENSE para más información.
+
 
