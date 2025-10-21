@@ -1,0 +1,63 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <h1>TTech Store</h1>
+    </div>
+    
+    <h2 class="auth-title">Crear una cuenta</h2>
+    
+    <form class="auth-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name" class="form-label">Tu nombre completo</label>
+        <input type="text" formControlName="name" id="name" class="form-input" placeholder="Juan Pérez">
+        <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-message">
+          El nombre es requerido (mínimo 2 caracteres)
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="email" class="form-label">Tu correo electrónico</label>
+        <input type="email" formControlName="email" id="email" class="form-input" placeholder="nombre@empresa.com">
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="error-message">
+          Ingresa un email válido
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" formControlName="password" id="password" class="form-input" placeholder="••••••••">
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error-message">
+          La contraseña debe tener al menos 6 caracteres
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="confirm-password" class="form-label">Confirmar contraseña</label>
+        <input type="password" formControlName="confirmPassword" id="confirm-password" class="form-input" placeholder="••••••••">
+        <div *ngIf="form.get('confirmPassword')?.touched && !passwordsMatch()" class="error-message">
+          Las contraseñas no coinciden
+        </div>
+      </div>
+      
+      <div class="terms-checkbox">
+        <input type="checkbox" id="terms" formControlName="acceptTerms">
+        <label for="terms">
+          Acepto los <a href="#">Términos y Condiciones</a>
+        </label>
+        <div *ngIf="form.get('acceptTerms')?.invalid && form.get('acceptTerms')?.touched" class="error-message">
+          Debes aceptar los términos y condiciones
+        </div>
+      </div>
+      
+      <button type="submit" class="auth-button" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Crear cuenta</span>
+        <span *ngIf="isLoading">Creando cuenta...</span>
+      </button>
+      
+      <p class="auth-link">
+        ¿Ya tienes una cuenta? 
+        <a routerLink="/login">Iniciar sesión</a>
+      </p>
+    </form>
+  </div>
+</div>

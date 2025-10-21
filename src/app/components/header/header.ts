@@ -4,6 +4,7 @@ import { CartService } from '../../services/cart';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -17,11 +18,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   totalPrice = 0;
   logoError = false;
   searchTerm = '';
+  isLoggedIn = false; 
   
   private cartSubscription: Subscription = new Subscription();
+  private authSubscription: Subscription = new Subscription();
 
   constructor(
     private cartService: CartService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
@@ -41,9 +45,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
       })
     );
 
+    this.authSubscription.add(
+      this.authService.isAuthenticated$.subscribe(loggedIn => {
+        this.isLoggedIn = loggedIn;
+      })
+    );
+
     // Cargar valores iniciales
     this.updateCartInfo();
   }
+
+
+
+  
 
   ngOnDestroy(): void {
     // Limpiar suscripciones
@@ -54,6 +68,27 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.cartItems = this.cartService.getTotalItems();
     this.totalPrice = this.cartService.getTotalPrice();
   }
+
+  goToLogin(): void {
+    this.router.navigate(['/login']);
+  }
+
+  goToRegister(): void {
+    this.router.navigate(['/register']);
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/products']);
+  }
+
+  goToProfile(): void {
+  if (this.isLoggedIn) {
+    this.router.navigate(['/profile']);
+  } else {
+    this.goToLogin();
+  }
+}
 
   goToHome(): void {
     this.router.navigate(['/']);
@@ -86,9 +121,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  goToProfile(): void {
-    alert('Funcionalidad del perfil - Próximamente');
-  }
+ 
 
   handleImageError(event: any): void {
     console.log('Error cargando logo:', event);
@@ -96,3 +129,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
     event.target.style.display = 'none';
   }
 }
+

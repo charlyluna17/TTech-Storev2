@@ -1,0 +1,91 @@
+<div class="profile-container">
+  <div class="profile-header">
+    <button class="back-btn" (click)="goBack()">← Volver</button>
+    <h1>Mi Perfil</h1>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+    <p>Cargando perfil...</p>
+  </div>
+
+  <div *ngIf="!isLoading && user" class="profile-content">
+    <!-- Información del usuario -->
+    <div class="profile-card">
+      <div class="profile-avatar">
+        {{ user.name.charAt(0).toUpperCase() }}
+      </div>
+      
+      <div class="profile-info">
+        <h2>{{ user.name }}</h2>
+        <p class="profile-email">{{ user.email }}</p>
+        <p class="profile-member">Miembro desde {{ getFormattedDate(user.createdAt) }}</p>
+        
+        <button class="edit-btn" (click)="editProfile()">
+          Editar Perfil
+        </button>
+      </div>
+    </div>
+
+    <!-- Compras recientes -->
+    <div class="purchases-section">
+      <h3>Compras Recientes</h3>
+      
+      <div *ngIf="recentPurchases.length === 0" class="no-purchases">
+        <p>Aún no has realizado compras</p>
+        <button class="btn-primary" (click)="goBack()">
+          Comenzar a Comprar
+        </button>
+      </div>
+
+      <div *ngIf="recentPurchases.length > 0" class="purchases-list">
+        <div *ngFor="let purchase of recentPurchases" class="purchase-card">
+          <div class="purchase-header">
+            <span class="purchase-id">{{ purchase.id }}</span>
+            <span class="purchase-status" [class]="purchase.status.toLowerCase()">
+              {{ purchase.status }}
+            </span>
+          </div>
+          
+          <div class="purchase-details">
+            <div class="purchase-date">
+              {{ getFormattedDate(purchase.date) }}
+            </div>
+            <div class="purchase-items">
+              {{ purchase.items }} producto{{ purchase.items !== 1 ? 's' : '' }}
+            </div>
+            <div class="purchase-total">
+              ${{ purchase.total.toFixed(2) }}
+            </div>
+          </div>
+          
+          <button class="view-order-btn">
+            Ver Detalles
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Estadísticas rápidas -->
+    <div class="stats-section">
+      <h3>Resumen</h3>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">{{ recentPurchases.length }}</div>
+          <div class="stat-label">Compras Totales</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">
+            ${{ getTotalSpent().toFixed(2) }}
+          </div>
+          <div class="stat-label">Total Gastado</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">
+            {{ getCompletedPurchases() }}
+          </div>
+          <div class="stat-label">Completadas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

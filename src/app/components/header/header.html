@@ -40,10 +40,27 @@
 
     <!-- Navegación -->
     <nav class="nav-section">
-      <button class="nav-btn" (click)="goToProfile()">
-        <span class="nav-icon">👤</span>
-        <span class="nav-text">Perfil</span>
-      </button>
+
+
+<!-- Botones de Auth -->
+<div class="auth-buttons" *ngIf="!isLoggedIn">
+  <button (click)="goToLogin()" class="auth-btn login-btn">
+    Iniciar Sesión
+  </button>
+  <button (click)="goToRegister()" class="auth-btn register-btn">
+    Registrarse
+  </button>
+</div>
+
+<!-- Menú de usuario cuando está logueado -->
+<div class="user-menu" *ngIf="isLoggedIn">
+  <button (click)="goToProfile()" class="auth-btn profile-btn">
+    Mi Perfil
+  </button>
+  <button (click)="logout()" class="auth-btn logout-btn">
+    Cerrar Sesión
+  </button>
+</div>
 
       <!-- Botón Carrito con animación -->
       <button class="nav-btn cart-btn" routerLink="/cart" [class.added]="cartItems > 0">
